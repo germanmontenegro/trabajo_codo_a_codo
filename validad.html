@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Formulario</h1>
+   <form action="">
+     <p>
+       <label for="">Nombre</label>
+       <input type="text" name="nombre" id="nombre">
+     </p>
+     <p>
+       <label for="">Contraseña</label>
+       <input type="password" name="contrasenia" id="contrasenia">
+     </p>
+     <p>
+       <label for="">Contraseña (Confirmación)</label>
+       <input type="password" name="confirmacion" id="confirmacion">
+     </p>
+     <p>
+       <label for="">Email</label>
+       <input type="text" name="email" id="email">
+     </p>
+     <p>
+       <input type="radio" name="genero" id="m" value="m">
+       <label for="m">Masculino</label>
+       <input type="radio" name="genero" id="f" value="f">
+       <label for="f">Femenino</label>
+       <input type="radio" name="genero" id="n" value="n">
+       <label for="n">No Binario</label>
+     </p>
+     <p>
+       <label for="">Pais</label>
+       <select name="pais" id="pais">
+         <option value="">Seleccione</option>
+         <option value="1">Argentina</option>
+         <option value="2">Brasil</option>
+         <option value="3">Uruguay</option>
+       </select>
+     </p>
+     <p>
+       <label for="terminos">
+         <input type="checkbox" name="terminos" id="terminos" value="acepta">Aceptar términos y condiciones
+       </label>
+     </p>
+     <p>
+       <input type="submit" value="Continuar" onclick="return validar(this.form)">
+     </p>
+   </form>
+
+   <script>
+function validar(formulario) {
+    if (formulario.nombre.value.trim().length == 0) {
+        alert(`Nombre obligatorio`);
+        return false;
+    }
+    if (formulario.contrasenia.value.trim().length == 0) {
+        alert(`Contraseña obligatoria`);
+        return false;
+    }
+    if (formulario.contrasenia.value != formulario.confirmacion.value) {
+        alert(`Confirmación no coincide`)
+        return false;
+    }
+    var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (!re.test(formulario.email.value)) {
+        alert('Email inválido');
+        return false;
+    }
+    if (formulario.genero.value == "") {
+        alert(`Género es obligatorio`);
+        return false;
+    }
+    if (formulario.pais.value == "") {
+        alert(`País es obligatorio`);
+        return false;
+    }
+    if (!formulario.terminos.checked) {
+        alert("Debe aceptar los términos y condiciones");
+        return false;
+    }
+    return true;
+}
+
+   </script>
+</body>
+</html>
